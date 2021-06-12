@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container-fluid mt-4">
+    <h1 style="text-align: center;" class="m-4">Quản lý sinh viên</h1>
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <h2 style="text-align: center;" class="mb-4">Nhập thông tin điểm của bạn</h2>
+          <form>
+            <div class="form-row mb-4">
+              <div class="col">
+                <label for="diemChuan">Điểm chuẩn</label>
+                <input type="number" id="diemChuan" class="form-control" placeholder="Điểm chuẩn">
+              </div>
+              <div class="col">
+                <label for="">Khu vực dự thi</label>
+                <select name="khuVuc" id="khuVuc" style="width: 100%;" class="form-control">
+                  <option value="2">A</option>
+                  <option value="1">B</option>
+                  <option value="0.5">C</option>
+                  <option value="0">X</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="">Đối tượng dự thi</label>
+                <select name="doiTuong" id="doiTuong" style="width: 100%;" class="form-control">
+                  <option value="2.5">1</option>
+                  <option value="1.5">2</option>
+                  <option value="1">3</option>
+                  <option value="0">0</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row mb-4">
+              <div class="col">
+                <label for="mon1">Điểm môn thứ nhất</label>
+                <input type="number" id="mon1" class="form-control" placeholder="Điểm môn thứ nhất">
+              </div>
+              <div class="col">
+                <label for="mon2">Điểm môn thứ hai</label>
+                <input type="number" id="mon2" class="form-control" placeholder="Điểm môn thứ hai">
+              </div>
+              <div class="col">
+                <label for="mon3">Điểm môn thứ ba</label>
+                <input type="number" id="mon3" class="form-control" placeholder="Điểm môn thứ ba">
+              </div>
+            </div>
+
+            <button class="btn btn-primary mr-4" onclick="clickToViewResult(event)">Xem kết quả</button>
+            <span style="color: #ff0000;" id="err"></span>
+          </form>
+        </div>
+        <div class="card mt-4">
+          <h2 class="text-center">Kết quả thi</h2>
+          <h6 id="ketQua"></h6>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <h2 style="text-align: center;" class="mb-4">Hướng dẫn kiểm tra kết quả thi</h2>
+          <ul style="list-style-type: circle;">
+            <li>Nhập điểm chuẩn của hội đồng vào ô điểm chuẩn <b>(từ 0 điểm tới 30 điểm)</b></li>
+            <li>Chọn khu vực dự thi của bạn để có cơ hội điểm số được tăng lên <b>(như bảng bên dưới)</b></li>
+            <li>Chọn đối tượng dự thi của bạn để có cơ hội làm tăng điểm số <b>(như bảng bên dưới)</b></li>
+            <li>Nhập lần lượt số điểm bạn đã đạt được trong kỳ thi <b>(từ 0 điểm tới 10 điểm)</b></li>
+          </ul>
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th scope="col">Khu vực</th>
+                <th scope="col">A</th>
+                <th scope="col">B</th>
+                <th scope="col">C</th>
+                <th scope="col">X</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Điểm cộng</th>
+                <td>2</td>
+                <td>1</td>
+                <td>0.5</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th scope="col">Đối tượng</th>
+                <th scope="col">1</th>
+                <th scope="col">2</th>
+                <th scope="col">3</th>
+                <th scope="col">0</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Điểm cộng</th>
+                <td>2.5</td>
+                <td>1.5</td>
+                <td>1</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid mt-4">
+    <h1 style="text-align: center;" class="m-4">Tính tiền điện</h1>
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <h2 class="text-center mb-4">Nhập thông tin tiêu thụ điện</h2>
+          <form>
+            <div class="form-row mb-4">
+              <div class="col">
+                <label for="ten">Tên của bạn</label>
+                <input type="text" id="ten" class="form-control" placeholder="Tên của bạn">
+              </div>
+              <div class="col">
+                <label for="kw">Số Kw</label>
+                <input type="number" id="kw" class="form-control" placeholder="Số Kw">
+              </div>
+            </div>
+            <button class="btn btn-primary" id="tinhTien" onclick="clickToGetResult(event)">Tính tiền điện</button>
+            <span style="color: #ff0000;" id="error" class="ml-4"></span>
+          </form>
+        </div>
+        <div class="card mt-4 mb-4">
+          <h2 class="text-center">Số tiền điện phải trả</h2>
+          <h6 id="ketQua2" class="text-center" style="color: green;"></h6>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card">
+          <h2 class="text-center mb-4">Quy tắc tính tiền</h2>
+          <div class="ul-container" style="margin: auto;">
+            <ul style="list-style-type: circle;">
+              <li>50kw đầu: 500d/kw</li>
+              <li>50kw kế: 650d/kw</li>
+              <li>100kw kế: 850kw</li>
+              <li>150kw kế: 1100d/kw</li>
+              <li>Còn lại: 1300d/kw</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
